@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Course{% endblock %}
+
+{% block content %}
+<h2>Добавить курс</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <h3>Блоки</h3>
+    <div id="blocks">
+        <div class="block">
+            <label for="block-title">Название блока:</label>
+            <input type="text" id="block-title" name="block-title" required>
+            <label for="block-content">Содержимое блока:</label>
+            <textarea id="block-content" name="block-content" required></textarea>
+        </div>
+    </div>
+    <button type="button" id="add-block">+ Добавить блок</button>
+    <button type="submit">Сохранить</button>
+</form>
+<script>
+    document.getElementById('add-block').addEventListener('click', function() {
+        const blockContainer = document.getElementById('blocks');
+        const newBlock = document.createElement('div');
+        newBlock.className = 'block';
+        newBlock.innerHTML = `
+            <label for="block-title">Название блока:</label>
+            <input type="text" id="block-title" name="block-title" required>
+            <label for="block-content">Содержимое блока:</label>
+            <textarea id="block-content" name="block-content" required></textarea>
+        `;
+        blockContainer.appendChild(newBlock);
+    });
+</script>
+{% endblock %}

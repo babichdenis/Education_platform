@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
+    # backend:
+    #     build: ./backend
+    #     volumes:
+    #       - ./media:/app/media
+    #       - ./static:/app/static
+    #       - ./staticfiles:/app/staticfiles
+    #     environment:
+    #       - DEBUG=True
+    #     ports:
+    #       - "8000:8000"
+
+    #   frontend:
+    #     build: ./frontend
+    #     volumes:
+    #       - ./frontend:/app
+    #     ports:
+    #       - "3000:3000"
+
+    #   nginx:
+    #     image: nginx:latest
+    #     volumes:
+    #       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    #       - ./media:/usr/share/nginx/html/media
+    #       - ./staticfiles:/usr/share/nginx/html/static
+    #     ports:
+    #       - "80:80"
+    #     depends_on:
+    #       - backend
+    #       - frontend
